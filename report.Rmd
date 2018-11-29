@@ -1,0 +1,32 @@
+
+Below are the selected plots:
+
+```{r plot1, fig.height=5,echo=FALSE,message=FALSE,warning=FALSE}
+par(mar = c(4, 4, 1, 1))
+
+ plotdata <- subset(newbuoydata,SiteName==input$site & DateTime >= input$dates[1] & DateTime<= input$dates[2])
+
+ggplot(data=plotdata,aes(x=plotdata$Chlorophyll,y=plotdata[,input$param]),color='green')+ geom_point() +
+      geom_smooth() + xlab("Chlorophyll") + ylab(input$param)+ ggtitle("Input Parameter and Chlorophyll Comparison")
+```
+
+```{r model, echo=FALSE, message=FALSE, warning= FALSE, results='hide'}
+
+  plotdata <- subset(newbuoydata,SiteName==input$site &
+                       DateTime >= input$dates[1] &
+                       DateTime<= input$dates[2])
+  mod <- lm(plotdata$Chlorophyll~plotdata[,input$param])
+  modsummary <- summary(mod)
+  return(modsummary)
+```
+
+R-Squared between Chlorophyll and,`r input$param`, during this timeframe: `r modsummary$r.squared`
+
+```{r plot2, fig.height=5,echo=FALSE,message=FALSE,warning=FALSE}
+par(mar = c(4, 4, 1, 1))
+
+plotdata <- subset(newbuoydata,SiteName==input$site & DateTime >= input$dates[1] & DateTime<= input$dates[2])
+    
+    ggplot(data=plotdata,aes(x=plotdata$DateTime,y=plotdata[,input$param]),color='red')+ geom_point() + geom_smooth() + xlab("Time") + ylab(input$param) + ggtitle("Time Series Comparison")
+```
+Viewing water quality data at `r input$site` between `r input$dates[1]` and `r input$dates[2]`
