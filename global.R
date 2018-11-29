@@ -6,6 +6,7 @@ library(gridExtra)
 library(knitr)
 library(tinytex)
 library(rmarkdown)
+library(plot3D)
 
 newbuoydata<-read.csv('data/newFormattedBuoyData.csv')
 newbuoydata$DateTime <- as.Date(newbuoydata$DateTime,format="%m/%d/%Y")
