@@ -1,0 +1,12 @@
+name: WaterQualityApp
+title: WaterQualityApp
+username:
+account: msolsen
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 600523
+bundleId: 1735190
+url: https://msolsen.shinyapps.io/WaterQualityApp/
+when: 1543802687.69365
+asMultiple: FALSE
+asStatic: FALSE
