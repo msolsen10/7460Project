@@ -106,7 +106,7 @@ output$modelresults <- renderText({
 
 #URL
 
-url<-a("R shiny QC Application", href="https://www.google.com/")
+url<-a("R shiny QC Application", href="https://bagmati.shinyapps.io/WaterQCApp/")
 output$tab<-renderUI({
   tagList("URL link:",url)
 })
@@ -115,8 +115,12 @@ output$tab<-renderUI({
 
 output$mymap<-renderLeaflet({
  leafdata<-subset(newbuoydata, SiteName==input$site) 
- leaflet()%>% addTiles()%>% setView(lng=unique(leafdata$Longitud), lat=unique(leafdata$Latitude),zoom = 11) %>% 
-   addMarkers(lng=unique(leafdata$Longitud), lat=unique(leafdata$Latitude))
+ leaflet() %>% 
+   addTiles() %>% 
+   addMarkers(lng=unique(leafdata$Longitude), 
+              lat=unique(leafdata$Latitude)
+              ) %>% 
+ setView(lng=unique(leafdata$Longitude), lat=unique(leafdata$Latitude),zoom = 11)
 })
 
 #Table 
@@ -141,7 +145,7 @@ output$table <- renderTable(plotmod())
 
 #Download PDF
 
-output$downloadReport <- downloadHandler(
+output$downloadReport.pdf <- downloadHandler(
   filename = function() {
     paste('my-report', sep = '.', switch(
       input$format, PDF = 'pdf', HTML = 'html', Word = 'docx'

@@ -43,11 +43,11 @@ shinyUI(fluidPage(
                   selectize=TRUE,
                   width= NULL,
                   size= NULL),
-                 dateRangeInput("dates", label = h3("Date range"), 
+                 dateRangeInput("dates", label = h3("Date range 8/26/2016 to 11/1/2018"), 
                                 start="2018-05-26",
                                 end="2018-10-31"),
                   radioButtons('format', 'Document Format', c('PDF','HTML','Word')),
-                  downloadButton('downloadReport')
+                  downloadButton('downloadReport.pdf')
                  
     ),
     
